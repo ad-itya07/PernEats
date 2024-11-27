@@ -6,3 +6,78 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id           String  @id @default(uuid())
+  auth0Id      String
+  email        String  @unique
+  name         String?
+  addressLine1 String?
+  city         String?
+  country      String?
+  // orders Order[] 
+}
+
+// enum OrderStatus {
+//   placed
+//   paid
+//   inProgress
+//   outForDelivery
+//   delivered
+// }
+
+// model Restaurant {
+//   id                  String    @id @default(uuid())
+//   restaurantName      String
+//   city                String
+//   country             String
+//   deliveryPrice       Float
+//   estimatedDeliveryTime Int
+//   cuisines            String[]
+//   menuItems           MenuItem[]
+//   imageUrl            String
+//   lastUpdated         DateTime @default(now())
+//   orders              Order[]  // One-to-many relationship with orders
+// }
+
+// model MenuItem {
+//   id           String      @id @default(uuid())
+//   name         String
+//   price        Float
+//   restaurant   Restaurant  @relation(fields: [restaurantId], references: [id])
+//   restaurantId String
+//   cartItems    CartItem[] 
+// }
+
+// model Order {
+//   id              String         @id @default(uuid())
+//   restaurant      Restaurant     @relation(fields: [restaurantId], references: [id])
+//   restaurantId    String         // Foreign key for Restaurant
+//   user            User           @relation(fields: [userId], references: [id])
+//   userId          String         // Foreign key for User
+//   deliveryDetails DeliveryDetails @relation(fields: [deliveryDetailsId], references: [id])
+//   deliveryDetailsId String
+//   cartItems       CartItem[]
+//   totalAmount     Float?
+//   status          OrderStatus    @default(placed) // Using enum for order status
+//   createdAt       DateTime       @default(now())
+// }
+
+// model DeliveryDetails {
+//   id           String @id @default(uuid())
+//   email        String
+//   name         String
+//   addressLine1 String
+//   city         String
+//   orders       Order[]
+// }
+
+// model CartItem {
+//   id        String  @id @default(uuid())
+//   order     Order   @relation(fields: [orderId], references: [id])
+//   orderId   String
+//   menuItem  MenuItem @relation(fields: [menuItemId], references: [id])
+//   menuItemId String
+//   quantity  Int
+//   name      String
+// }
