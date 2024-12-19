@@ -1,21 +1,27 @@
-import { PrismaClient } from "@prisma/client";
+import mongoose from "mongoose";
 
-const prisma = new PrismaClient();
+const userSchema = new mongoose.Schema({
+  auth0Id: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+  },
+  addressLine1: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  country: {
+    type: String,
+  },
+});
 
-export const createNewUser = async (userData : any) => {
-    const newUser = await prisma.user.create({
-        data: userData,
-    });
-
-    return newUser;
-};
-
-export const userExists = async (email : string) => {
-  const user = await prisma.user.findUnique({
-    where: {
-        email: email,
-    }
-  });
-
-  return user;
-};
+const User = mongoose.model("User", userSchema);
+export default User;
