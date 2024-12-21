@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
+import UserProfilePage from "./pages/UserProfilePage";
 
 const AppRoutes = () => {
   return (
@@ -11,7 +12,7 @@ const AppRoutes = () => {
       <Route
         path="/"
         element={
-          <Layout>
+          <Layout showHero>
             <HomePage />
           </Layout>
         }
@@ -32,12 +33,16 @@ const AppRoutes = () => {
           </Layout>
         }
       />
-      <Route 
-        path="/auth-callback" 
-        element={<AuthCallbackPage />} 
+      <Route path="/auth-callback" element={<AuthCallbackPage />} />
+
+      <Route
+        path="/user-profile"
+        element={
+          <Layout>
+            <UserProfilePage />
+          </Layout>
+        }
       />
-      
-      <Route path="/user-profile" element={<span>USER PROFILE PAGE</span>} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
