@@ -20,6 +20,29 @@ class UserController {
       res.status(500).json({ message: "Error creating user" });
     }
   }
+
+  async updateUser(req: Request, res: Response) {
+    try {
+      const { name, addressLine1, country, city } = req.body;
+      const user = await User.findById(req.userId);
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      user.name = name || user.name;
+      user.addressLine1 = addressLine1 || user.addressLine1;
+      user.country = country || user.country;
+      user.city = city || user.city;
+
+      await user.save();
+
+      res.status(200).send(user);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Error updating user" });
+    }
+  }
 }
 
 export default new UserController();
