@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "./server.ts",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "build": "npm install && tsc",
+    "start": "node ./dist/server.js"
   },
   "keywords": [],
   "author": "",
