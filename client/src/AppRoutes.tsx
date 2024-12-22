@@ -5,7 +5,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
 import UserProfilePage from "./pages/UserProfilePage";
-import ProtectedRoute from "./Auth/protectedRoute";
+import ProtectedRoute from "./Auth/ProtectedRoute";
 
 const AppRoutes = () => {
   return (
