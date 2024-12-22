@@ -10,7 +10,7 @@ declare global {
   namespace Express {
     interface Request {
       auth0Id: string;
-      userId: string;
+      userId: string | undefined;
     }
   }
 }
@@ -44,7 +44,7 @@ export const jwtParseUserAndAuth0IdToRequest = async (
     }
 
     req.auth0Id = auth0Id as string;
-    req.userId = user._id.toString();
+    req.userId = user._id?.toString();
     next();
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized" });
