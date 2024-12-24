@@ -20,7 +20,7 @@ const createRestaurant = async (req: Request, res: Response) => {
     const dataURI = `data:${image.mimetype};base64,${base64Image}`;
 
     const uploadResponse = await cloudinary.v2.uploader.upload(dataURI, {
-      folder: "Book Covers",
+      folder: "PernEats-Restaurant",
       public_id: `${req.body.restaurantName}-${req.userId}`,
     });
 
@@ -37,6 +37,20 @@ const createRestaurant = async (req: Request, res: Response) => {
   }
 };
 
+const getRestaurant = async (req: Request, res: Response) => {
+  try {
+    const restaurant = await Restaurant.findOne({ user: req.userId });
+    if (!restaurant) {
+      return res.status(404).json({ message: "restaurant not found" });
+    }
+    res.json(restaurant);
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).json({ message: "Error fetching restaurant" });
+  }
+};
+
 export default {
+  getRestaurant,
   createRestaurant,
 };
