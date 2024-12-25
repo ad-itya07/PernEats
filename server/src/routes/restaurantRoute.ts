@@ -24,3 +24,12 @@ router.post(
   jwtParseUserAndAuth0IdToRequest as any,
   restaurantController.createRestaurant as any
 );
+
+router.put(
+  "/update",
+  upload.single("imageFile"),
+  validateMyRestaurantRequest as any,
+  jwtCheck,
+  jwtParseUserAndAuth0IdToRequest as any,
+  restaurantController.updateRestaurant as any
+)
