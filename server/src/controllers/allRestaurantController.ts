@@ -75,6 +75,5 @@ const searchRestaurant = async (req: Request, res: Response) => {
 };
 
 export default {
-  getRestaurant,
   searchRestaurant,
 };
