@@ -16,3 +16,13 @@ router.get(
     .withMessage("City paramenter must be a valid string"),
   allRestaurantController.searchRestaurant as any
 );
+
+router.get(
+  "/:restaurantId",
+  param("restaurantId")
+    .isString()
+    .trim()
+    .notEmpty()
+    .withMessage("RestaurantId paramenter must be a valid string"),
+  allRestaurantController.getRestaurant as any
+);
