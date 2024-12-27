@@ -16,6 +16,13 @@ router.get(
   restaurantController.getRestaurant as any
 );
 
+router.get(
+  "/order",
+  jwtCheck,
+  jwtParseUserAndAuth0IdToRequest as any,
+  restaurantController.getRestaurantOrders as any
+);
+
 router.post(
   "/create",
   upload.single("imageFile"),
