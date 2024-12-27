@@ -13,3 +13,5 @@ router.post(
   jwtParseUserAndAuth0IdToRequest as any,
   orderController.createCheckoutSession as any
 );
+
+router.post("/checkout/webhook", orderController.stripeWebhookHandler as any);
