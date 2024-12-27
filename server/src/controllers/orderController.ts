@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 import Stripe from "stripe";
 import Restaurant, { MenuItemType } from "../models/restaurant";
 
-const STRIPE = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+const STRIPE = new Stripe(process.env.STRIPE_API_KEY as string);
 const FRONTEND_URL = process.env.FRONTEND_URL as string;
 
 type CheckoutSessionRequest = {
   cartItems: {
-    menutItemId: string;
+    menuItemId: string;
     name: string;
     quantity: string;
   }[];
@@ -63,11 +63,11 @@ const createLineItems = (
 
   const lineItems = checkoutSessionRequest.cartItems.map((cartItem) => {
     const menuItem = menuItems.find(
-      (item) => item._id.toString() === cartItem.menutItemId
+      (item) => item._id.toString() === cartItem.menuItemId
     );
 
     if (!menuItem) {
-      throw new Error(`Menu item not found: ${cartItem.menutItemId}`);
+      throw new Error(`Menu item not found: ${cartItem.menuItemId}`);
     }
 
     const line_item: Stripe.Checkout.SessionCreateParams.LineItem = {
