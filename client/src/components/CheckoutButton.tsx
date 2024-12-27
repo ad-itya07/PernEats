@@ -9,9 +9,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 type Props = {
   onCheckout: (userFormData: UserFormData) => void;
   disabled: boolean;
+  isLoading: boolean;
 }
 
-const CheckoutButton = ({onCheckout , disabled} : Props) => {
+const CheckoutButton = ({onCheckout , disabled, isLoading} : Props) => {
   const {
     isAuthenticated,
     isLoading: isAuthLoading,
@@ -37,7 +38,7 @@ const CheckoutButton = ({onCheckout , disabled} : Props) => {
     );
   }
 
-  if (isAuthLoading || !currentUser) {
+  if (isAuthLoading || !currentUser || isLoading) {
     return <LoadingButton />;
   }
 
