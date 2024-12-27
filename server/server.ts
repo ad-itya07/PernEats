@@ -23,8 +23,9 @@ cloudinary.config({
 const port = process.env.PORT || 5000;
 const app = express();
 
-app.use(express.json());
 app.use(cors());
+app.use("/api/order/checkout/webhook", express.raw({ type: "*/*" }));
+app.use(express.json());
 
 app.get("/health", (req: Request, res: Response) => {
   res.send({ message: "Server is up and running" });
