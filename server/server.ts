@@ -6,6 +6,7 @@ import { v2 as cloudinary } from "cloudinary";
 import { router as userRoute } from "./src/routes/userRoute";
 import { router as restaurantRoute } from "./src/routes/restaurantRoute";
 import { router as allRestaurantRoute } from "./src/routes/allRestaurantRoute";
+import { router as orderRoute } from "./src/routes/orderRoute";
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.get("/health", (req: Request, res: Response) => {
 app.use("/api/user", userRoute);
 app.use("/api/restaurant", restaurantRoute);
 app.use("/api/all/restaurant", allRestaurantRoute);
+app.use("/api/order", orderRoute);
 
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
